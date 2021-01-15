@@ -1,15 +1,14 @@
 apply plugin: 'com.android.library'
 
 android {
-    // http://tools.android.com/tech-docs/new-build-system/tips
-    //noinspection GroovyAssignabilityCheck
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    //noinspection GroovyAssignabilityCheck
-    buildToolsVersion rootProject.ext.buildToolsVersion
-
+    compileSdkVersion 29
     defaultConfig {
-        minSdkVersion 9
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion 18
+        targetSdkVersion 29
+        flavorDimensions "default"
+        ndk {
+            abiFilters "armeabi-v7a"
+        }
     }
     buildTypes {
         release {
@@ -24,16 +23,5 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-}
-
-ext {
-    optionalPlugins = ['tools/gradle-mvn-push.gradle', 'tools/gradle-bintray-upload.gradle'];
-}
-
-ext.optionalPlugins.each{ value ->
-    def plugin_file = new File(rootProject.projectDir, value);
-    if (plugin_file.exists()) {
-        apply from: plugin_file
-    }
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 }

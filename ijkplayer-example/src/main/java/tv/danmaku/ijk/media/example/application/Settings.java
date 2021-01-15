@@ -27,9 +27,7 @@ public class Settings {
     private SharedPreferences mSharedPreferences;
 
     public static final int PV_PLAYER__Auto = 0;
-    public static final int PV_PLAYER__AndroidMediaPlayer = 1;
     public static final int PV_PLAYER__IjkMediaPlayer = 2;
-    public static final int PV_PLAYER__IjkExoMediaPlayer = 3;
 
     public Settings(Context context) {
         mAppContext = context.getApplicationContext();
@@ -38,7 +36,7 @@ public class Settings {
 
     public boolean getEnableBackgroundPlay() {
         String key = mAppContext.getString(R.string.pref_key_enable_background_play);
-        return mSharedPreferences.getBoolean(key, false);
+        return mSharedPreferences.getBoolean(key, true);
     }
 
     public int getPlayer() {
